@@ -31,8 +31,11 @@ class RotateAxis(Scene):
                             y_length=10)
 
         # self.play(Create(Casper))
-        self.add(ax, plane, casper)
-        self.play(Rotate(ax, angle=PI/6, about_point=ORIGIN,
-                  rate_func=linear, run_time=3), Rotate(plane, angle=PI/6, about_point=ORIGIN,
-                  rate_func=linear, run_time=3))
+        t = Tex("cos $\\theta$")
+        m2 = Matrix([["cos\\theta", "sin\\theta"],
+                     ["-sin\\theta", "cos\\theta"]])
+        self.add(m2)
+        # self.play(Rotate(ax, angle=PI/6, about_point=ORIGIN,
+        #           rate_func=linear, run_time=3), Rotate(plane, angle=PI/6, about_point=ORIGIN,
+        #           rate_func=linear, run_time=3))
         self.wait()
