@@ -129,8 +129,8 @@ class naive(MovingCameraScene):
             y_range=[0, 50, 1],
             x_length=6,
             y_length=6,
-            axis_config={"include_numbers": True,
-                         "font_size": 18},
+            axis_config={"numbers_to_include": np.arange(0, 51, 10),
+                         "font_size": 20},
             tips=False
         )
         plane = NumberPlane(

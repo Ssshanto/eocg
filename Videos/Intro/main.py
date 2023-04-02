@@ -93,7 +93,7 @@ class RWQuote(Scene):
         subtitle = Text("Almost to the point where we don't even think to ask the question 'How?'").move_to(
             ORIGIN + 3 * DOWN).scale(0.4)
         self.add(subtitle)
-        self.wait(5)
+        self.wait(3)
         self.clear()
 
 
@@ -133,7 +133,7 @@ class CasperMove(Scene):
         self.clear()
         self.add(subtitle)
         self.play(Create(triangle), Create(circle1))
-        self.wait(5)
+        self.wait(2)
 
 
 class CurvesDraw(Scene):
@@ -199,7 +199,7 @@ class CurvesDraw(Scene):
         self.play(Transform(dn1, dnn1), Transform(dn2, dnn2), Transform(
             l1n, l1nn), Transform(l2n, l2nn), Transform(l3n, l3nn), Transform(newBezier, newBezier2))
 
-        self.wait(4)
+        self.wait(2)
 
 
 class LineDraw(Scene):
@@ -245,16 +245,15 @@ class LineDraw(Scene):
         self.play(Create(r2, run_time=0.3))
         self.play(Create(r3, run_time=0.3))
         self.play(Create(r4, run_time=0.3))
-        self.wait(4)
+        self.wait(2)
 
 
 class eocg(Scene):
     def construct(self):
-        subtitle = Text("Pursuing the building blocks of image generation leads us to this subtle yet infinitely expansive domain").move_to(
+        subtitle = Text("Pursuing the building blocks of image generation leads us to this underappreciated yet elegant domain").move_to(
             ORIGIN + 2.5 * DOWN).scale(0.4)
         self.add(subtitle)
         self.wait(4)
-
         self.remove(subtitle)
 
         subtitle = Text("This is, The Essence of Computer Graphics").move_to(

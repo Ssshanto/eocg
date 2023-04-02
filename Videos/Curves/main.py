@@ -27,16 +27,24 @@ class ParametricDefinition(Scene):
         # this is known as lerp(P0, P1, t)
         # Show parametric function
 
+        subtitle = Text("We can define any point on the line as a parametric function").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+
+        self.add(subtitle)
         parametric_formula = MathTex(r"P(t) = (1 - t)P_{0} + tP_{1}")
-        parametric_formula.move_to(ORIGIN + 3 * DOWN)
+        parametric_formula.move_to(ORIGIN + 2 * DOWN)
         self.play(Write(parametric_formula))
-        self.wait()
+        self.wait(2)
 
         demo_tvalues = [0.5, 0.2, 0.7]
-        old_line = Line(d0, d0).set_color(BLUE)
+        self.remove(subtitle)
+        subtitle = Text("Values of t between 0 and 1 specify any point on the line").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+        self.add(subtitle)
+        old_line = Line(d0, d0).set_color(BLUE).set_stroke(width=10)
         for t in demo_tvalues:
             endpoint = lerp(p0, p1, t)
-            new_line = Line(d0, endpoint).set_color(BLUE).set_stroke(width=5)
+            new_line = Line(d0, endpoint).set_color(BLUE).set_stroke(width=10)
             enddot = Dot(point=endpoint).set_color(BLUE)
             t_val_text = Variable(
                 t, label="t", num_decimal_places=1)
@@ -72,6 +80,10 @@ class ParametricDefinition(Scene):
 
 class QuadraticBezierSetup(Scene):
     def construct(self):
+        subtitle = Tex("Similarly, we can choose the same t-value for two lines connected at point $P_{1}$").move_to(
+            ORIGIN + 3 * DOWN).scale(0.75)
+
+        self.add(subtitle)
         p0 = np.array([-3.5, -1, 0])  # startpoint
         p1 = np.array([0, 2, 0])  # 2nd point
         p2 = np.array([3.5, -1, 0])  # 3rd point
@@ -88,15 +100,15 @@ class QuadraticBezierSetup(Scene):
         self.add(d0, d1, d2, p0_label, p1_label, p2_label, l1, l2)
 
         demo_tvalues = [0.5, 0.2, 0.7]
-        old_line1 = Line(d0, d0).set_color(BLUE)
-        old_line2 = Line(d1, d1).set_color(BLUE)
+        old_line1 = Line(d0, d0).set_color(BLUE).set_stroke(width=10)
+        old_line2 = Line(d1, d1).set_color(BLUE).set_stroke(width=10)
         for t in demo_tvalues:
             endpoint1 = lerp(p0, p1, t)
             endpoint2 = lerp(p1, p2, t)
             new_line1 = Line(d0, endpoint1).set_color(
-                BLUE).set_stroke(width=5)
+                BLUE).set_stroke(width=10)
             new_line2 = Line(d1, endpoint2).set_color(
-                BLUE).set_stroke(width=5)
+                BLUE).set_stroke(width=10)
             enddot1 = Dot(point=endpoint1).set_color(BLUE)
             enddot2 = Dot(point=endpoint2).set_color(BLUE)
 
@@ -137,6 +149,12 @@ class QuadraticBezierDraw(Scene):
         l2 = Line(d1, d2)
         dt1 = Dot(point=p0).set_color(BLUE)
         dt2 = Dot(point=p1).set_color(BLUE)
+
+        subtitle = Text("We add another line that connects these two parametric points").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+
+        self.add(subtitle)
+
         self.add(l1, l2, d0, d1, d2, p0_label, p1_label, p2_label)
 
         t = 0
@@ -155,10 +173,22 @@ class QuadraticBezierDraw(Scene):
         self.play(Create(old_midline))
         self.play(Create(old_dt1), Create(old_dt2))
         self.play(Write(dt1_label), Write(dt2_label))
+
+        self.remove(subtitle)
+        subtitle = Text("... and find the point at the same t-value for this line").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+        self.add(subtitle)
         self.play(Create(old_dt3))
         self.play(Write(dt3_label))
 
-        self.wait(2)
+        self.wait(4)
+
+        self.remove(subtitle)
+        subtitle = Text("We can trace out this point for all t-values").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+
+        self.add(subtitle)
+
         self.remove(old_dt1, old_dt2, old_dt3, dt1_label, dt2_label, dt3_label)
         old_curve_point = p0
         epsilon = 0.025
@@ -191,7 +221,8 @@ class QuadraticBezierDraw(Scene):
             # demo_bezier = bezier(points)
 
         self.wait(2)
-        quadratic_bezier_label = Text("Qaudratic Bezier Curve").move_to(
+        self.remove(subtitle)
+        quadratic_bezier_label = Text("Quadratic Bezier Curve").move_to(
             ORIGIN + 3 * DOWN).set_color(ORANGE)
         self.play(Write(quadratic_bezier_label))
         self.wait(2)
@@ -219,7 +250,6 @@ class QuadraticBezierDraw(Scene):
 
 
 def drawCubicBezier(scene_obj, p0, p1, p2, p3, drawNew):
-
     old_midline1 = Line(p0, p1).set_opacity(0.25)
     old_midline2 = Line(p1, p2).set_opacity(0.25)
     old_dm1 = Dot(p0).set_color(BLUE)
@@ -290,6 +320,10 @@ def drawCubicBezier(scene_obj, p0, p1, p2, p3, drawNew):
 
 class CubicBezierDraw(Scene):
     def construct(self):
+        subtitle = Text("Similarly, we can extend this idea for four points").move_to(
+            ORIGIN + 3 * DOWN).scale(0.5)
+        self.add(subtitle)
+
         p0 = np.array([-3.5, -1, 0])  # startpoint
         p1 = np.array([-3, 2, 0])  # 1st point
         p2 = np.array([3, 2, 0])  # 2nd point
@@ -362,18 +396,24 @@ class CubicBezierDraw(Scene):
             dm1, new_dm1), Transform(dm2, new_dm2), Transform(dm3, new_dm3), Transform(midline, new_midline), Transform(dmstart, new_dmstart), Transform(dmend, new_dmend), Transform(dm, new_dm))
         self.wait()
 
+        self.remove(subtitle)
         drawCubicBezier(self, p0, p1, p2, p3, False)
         p0 = np.array([1.5, 3.5, 0])  # startpoint
-        p1 = np.array([-3.5, -2, 0])  # 1st point
+        p1 = np.array([-3.5, -1, 0])  # 1st point
         p2 = np.array([3, 3, 0])  # 2nd point
-        p3 = np.array([-2.5, -3, 0])  # 3rd point
+        p3 = np.array([-2.5, -2, 0])  # 3rd point
+
+        subtitle = Tex("Through the use of the four control points, artists can freely manipulate these curves").move_to(
+            ORIGIN + 3 * DOWN).scale(0.75)
+        self.add(subtitle)
+
         drawCubicBezier(self, p0, p1, p2, p3, True)
         self.wait()
 
         p0 = np.array([1, 3, 0])  # startpoint
         p1 = np.array([2.5, 2, 0])  # 1st point
-        p2 = np.array([-5, -3, 0])  # 2nd point
-        p3 = np.array([-2, -2.5, 0])  # 3rd point
+        p2 = np.array([-5, -1, 0])  # 2nd point
+        p3 = np.array([-2, -2, 0])  # 3rd point
         drawCubicBezier(self, p0, p1, p2, p3, True)
 
 
