@@ -1,6 +1,6 @@
 # The Essence of Computer Graphics
 
-1[](/assets/eocg.gif)
+![](/Assets/eocg.gif)
 
 A playlist aimed at animating the visual intuitions behind concepts of Computer Graphics in a 3blue1brown-style playlist
 
