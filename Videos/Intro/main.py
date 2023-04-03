@@ -264,3 +264,12 @@ class eocg(Scene):
         self.add(subtitle)
         self.play(Write(titleTop), Write(titleBottom))
         self.wait(5)
+
+
+class eocg_gif(Scene):
+    def construct(self):
+        titleTop = Tex("The Essence of").move_to(ORIGIN + 0.75 * UP)
+        titleBottom = Tex("Computer Graphics").move_to(
+            ORIGIN).set_color(ORANGE).scale(2)
+        self.play(Write(titleTop), Write(titleBottom))
+        self.wait(5)
